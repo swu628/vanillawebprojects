@@ -152,8 +152,6 @@ function moveBall() {
 
   // Hit bottom wall - Lose
   if (ball.y + ball.size > canvas.height) {
-    showAllBricks();
-    score = 0;
     isGameActive = false; // Stop the game loop
     showEndGameModal(false); // Show game over message
   }
@@ -164,12 +162,8 @@ function increaseScore() {
   score++;
 
   if (score % (brickRowCount * brickColumnCount) === 0) {
-
     isGameActive = false; // Stop the game loop
     showEndGameModal(true); // Show win message
-
-      ball.visible = false;
-      paddle.visible = false;
   }
 }
 
@@ -193,11 +187,10 @@ function draw() {
 
 // Update canvas drawing and animation
 function update() {
-
   if (!isGameActive) {
     return; // Stop the game loop if the game is not active
   }
-  
+
   movePaddle();
   moveBall();
 
@@ -205,7 +198,6 @@ function update() {
   draw();
 
   requestAnimationFrame(update);
-
 }
 
 // Keydown event
@@ -270,18 +262,6 @@ function resetGame() {
     column.forEach(brick => (brick.visible = true));
   });
 
-        //After 0.5 sec restart the game
-        setTimeout(function () {
-          showAllBricks();
-          score = 0;
-          paddle.x = canvas.width / 2 - 40;
-          paddle.y = canvas.height - 20;
-          ball.x = canvas.width / 2;
-          ball.y = canvas.height / 2;
-          ball.visible = true;
-          paddle.visible = true;
-        },delay)
-        
   isGameActive = true;
   update(); // Start the game loop again
 }
