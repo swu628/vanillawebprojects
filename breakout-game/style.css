@@ -68,3 +68,55 @@ canvas {
 .rules.show {
   transform: translateX(0);
 }
+
+#gameEndModal {
+  border: 2px solid #000;
+  border-radius: 5px;
+}
+
+#startGameBtn {
+  background-color: #0095dd; /* Bootstrap primary blue for example */
+  color: white;
+  font-size: 20px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#gameEndModal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  color: #333;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1050; /* Ensure it's above other content */
+  width: 80%;
+  max-width: 400px; /* Adjust based on your preference */
+  text-align: center;
+  border: 2px solid #0095dd; /* Blue border to match the button */
+}
+
+#gameEndModal p {
+  margin: 20px 0;
+  font-size: 18px;
+}
+
+#playAgainBtn {
+  background-color: #28a745; /* Bootstrap success green for example */
+  color: white;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

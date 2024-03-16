@@ -9,7 +9,9 @@
   </head>
   <body>
     <h1>Breakout!</h1>
+    <button id="startGameBtn">Start the Game</button>
     <button id="rules-btn" class="btn rules-btn">Show Rules</button>
+    
     <div id="rules" class="rules">
       <h2>How To Play:</h2>
       <p>
@@ -18,6 +20,11 @@
       </p>
       <p>If you miss the ball, your score and the blocks will reset.</p>
       <button id="close-btn" class="btn">Close</button>
+    </div>
+
+    <div id="gameEndModal">
+      <p id="gameEndMessage"></p>
+      <button id="playAgainBtn">Play Again</button>
     </div>
 
     <canvas id="canvas" width="800" height="600"></canvas>

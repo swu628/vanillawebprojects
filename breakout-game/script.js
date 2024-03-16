@@ -5,6 +5,7 @@ const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
 let score = 0;
+let isGameActive = false; // Add this at the top of your script
 
 const brickRowCount = 9;
 const brickColumnCount = 5;
@@ -153,6 +154,8 @@ function moveBall() {
   if (ball.y + ball.size > canvas.height) {
     showAllBricks();
     score = 0;
+    isGameActive = false; // Stop the game loop
+    showEndGameModal(false); // Show game over message
   }
 }
 
@@ -161,6 +164,9 @@ function increaseScore() {
   score++;
 
   if (score % (brickRowCount * brickColumnCount) === 0) {
+
+    isGameActive = false; // Stop the game loop
+    showEndGameModal(true); // Show win message
 
       ball.visible = false;
       paddle.visible = false;
@@ -199,6 +205,11 @@ function draw() {
 
 // Update canvas drawing and animation
 function update() {
+
+  if (!isGameActive) {
+    return; // Stop the game loop if the game is not active
+  }
+  
   movePaddle();
   moveBall();
 
@@ -206,9 +217,8 @@ function update() {
   draw();
 
   requestAnimationFrame(update);
-}
 
-update();
+}
 
 // Keydown event
 function keyDown(e) {
@@ -231,9 +241,47 @@ function keyUp(e) {
   }
 }
 
+// Show result to the user
+function showEndGameModal(win) {
+  const gameEndModal = document.getElementById('gameEndModal');
+  const gameEndMessage = document.getElementById('gameEndMessage');
+  gameEndMessage.textContent = win ? "Congratulations! You won!" : "Game Over! Try again?";
+  gameEndModal.style.display = "block";
+}
+
+function resetGame() {
+  // Reset game state (score, ball position, etc.)
+  score = 0;
+  ball.x = canvas.width / 2;
+  ball.y = canvas.height / 2;
+  ball.dx = 4;
+  ball.dy = -4;
+  paddle.x = canvas.width / 2 - 40;
+  paddle.y = canvas.height - 20;
+  bricks.forEach(column => {
+      column.forEach(brick => (brick.visible = true));
+  });
+  isGameActive = true; // Make sure to set this to true to start the game loop again
+  update(); // Start the game loop again
+}
+
 // Keyboard event handlers
 document.addEventListener('keydown', keyDown);
 document.addEventListener('keyup', keyUp);
+
+// When starting the game
+document.getElementById('startGameBtn').addEventListener('click', function() {
+  this.style.display = 'none'; // Hide the start button
+  isGameActive = true; // Enable the game loop
+  update(); // Start the game
+});
+
+// Restart the game 
+document.getElementById('playAgainBtn').addEventListener('click', function() {
+  const gameEndModal = document.getElementById('gameEndModal');
+  gameEndModal.style.display = "none"; // Hide the modal
+  resetGame(); // Reset the game to its initial state
+});
 
 // Rules and close event handlers
 rulesBtn.addEventListener('click', () => rules.classList.add('show'));
