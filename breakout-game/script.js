@@ -144,6 +144,10 @@ function moveBall() {
           ball.dy *= -1;
           brick.visible = false;
 
+          // Play the brick hit sound
+          playBrickHitSound();
+
+          // Increase the score when a brick is hitted
           increaseScore();
         }
       }
@@ -154,6 +158,17 @@ function moveBall() {
   if (ball.y + ball.size > canvas.height) {
     isGameActive = false; // Stop the game loop
     showEndGameModal(false); // Show game over message
+  }
+}
+
+// Plays a sound effect when the ball hits the brick
+function playBrickHitSound() {
+  var sound = document.getElementById('brickHitSound');
+  if (sound.paused) {
+      sound.play();
+  } else {
+     // Reset playback position to the start so that when multiple bricks hitted the sound effect will play multiple times
+      sound.currentTime = 0;
   }
 }
 
