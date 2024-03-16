@@ -129,6 +129,9 @@ function moveBall() {
     ball.y + ball.size > paddle.y
   ) {
     ball.dy = -ball.speed;
+    
+    // Play the paddle hit sound
+    document.getElementById('paddleHitSound').play();
   }
 
   // Brick collision
@@ -242,7 +245,14 @@ function keyUp(e) {
 function showEndGameModal(win) {
   const gameEndModal = document.getElementById('gameEndModal');
   const gameEndMessage = document.getElementById('gameEndMessage');
-  gameEndMessage.textContent = win ? "Congratulations! You won!" : "Game Over! Try again?";
+  // Play winning/losing message and sound effect
+  if (win) {
+    gameEndMessage.textContent = "Congratulations! You won!";
+    document.getElementById('successSound').play();
+  } else {
+    gameEndMessage.textContent = "Game Over! Try again?";
+    document.getElementById('loseSound').play();
+  }
   gameEndModal.style.display = "block";
 }
 
