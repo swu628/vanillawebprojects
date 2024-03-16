@@ -5,7 +5,7 @@ const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
 let score = 0;
-let isGameActive = false; // Add this at the top of your script
+let isGameActive = false; // Stop the game from auto playing
 
 const brickRowCount = 9;
 const brickColumnCount = 5;
@@ -170,18 +170,6 @@ function increaseScore() {
 
       ball.visible = false;
       paddle.visible = false;
-
-      //After 0.5 sec restart the game
-      setTimeout(function () {
-          showAllBricks();
-          score = 0;
-          paddle.x = canvas.width / 2 - 40;
-          paddle.y = canvas.height - 20;
-          ball.x = canvas.width / 2;
-          ball.y = canvas.height / 2;
-          ball.visible = true;
-          paddle.visible = true;
-      },delay)
   }
 }
 
@@ -226,6 +214,8 @@ function keyDown(e) {
     paddle.dx = paddle.speed;
   } else if (e.key === 'Left' || e.key === 'ArrowLeft') {
     paddle.dx = -paddle.speed;
+  } else if (e.key === 'Enter' && isGameActive == false) { // Press enter to play the game
+    toggleGameStartRestart();
   }
 }
 
@@ -249,6 +239,24 @@ function showEndGameModal(win) {
   gameEndModal.style.display = "block";
 }
 
+// Toggle game start/restart
+function toggleGameStartRestart() {
+  if (!isGameActive) {
+    // If the game is not active, start the game
+    isGameActive = true;
+
+    // Hide the start button if visible
+    document.getElementById('startGameBtn').style.display = 'none';
+      
+    // Hide the game end modal if it's visible
+    const gameEndModal = document.getElementById('gameEndModal');
+    if (gameEndModal) {
+      gameEndModal.style.display = 'none';
+    }
+    resetGame(); // Start or restart the game loop
+  }
+}
+
 function resetGame() {
   // Reset game state (score, ball position, etc.)
   score = 0;
@@ -259,9 +267,22 @@ function resetGame() {
   paddle.x = canvas.width / 2 - 40;
   paddle.y = canvas.height - 20;
   bricks.forEach(column => {
-      column.forEach(brick => (brick.visible = true));
+    column.forEach(brick => (brick.visible = true));
   });
-  isGameActive = true; // Make sure to set this to true to start the game loop again
+
+        //After 0.5 sec restart the game
+        setTimeout(function () {
+          showAllBricks();
+          score = 0;
+          paddle.x = canvas.width / 2 - 40;
+          paddle.y = canvas.height - 20;
+          ball.x = canvas.width / 2;
+          ball.y = canvas.height / 2;
+          ball.visible = true;
+          paddle.visible = true;
+        },delay)
+        
+  isGameActive = true;
   update(); // Start the game loop again
 }
 
@@ -272,8 +293,7 @@ document.addEventListener('keyup', keyUp);
 // When starting the game
 document.getElementById('startGameBtn').addEventListener('click', function() {
   this.style.display = 'none'; // Hide the start button
-  isGameActive = true; // Enable the game loop
-  update(); // Start the game
+  resetGame();
 });
 
 // Restart the game 
