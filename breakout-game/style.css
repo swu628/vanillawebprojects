@@ -24,6 +24,10 @@ canvas {
   border-radius: 10px;
 }
 
+.hidden {
+  display: none;
+}
+
 .btn, .rules-btn, .startGameBtn {
   background-color: #61dafb;
   color: #282c34;

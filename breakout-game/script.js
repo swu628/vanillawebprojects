@@ -6,9 +6,9 @@ const ctx = canvas.getContext('2d');
 
 let score = 0;
 let isGameActive = false; // Stop the game from auto playing
+let brickColumnCount;
 
 const brickRowCount = 9;
-const brickColumnCount = 5;
 const delay = 500; //delay to reset the game
 
 // Create ball props
@@ -44,13 +44,15 @@ const brickInfo = {
 };
 
 // Create bricks
-const bricks = [];
-for (let i = 0; i < brickRowCount; i++) {
-  bricks[i] = [];
-  for (let j = 0; j < brickColumnCount; j++) {
-    const x = i * (brickInfo.w + brickInfo.padding) + brickInfo.offsetX;
-    const y = j * (brickInfo.h + brickInfo.padding) + brickInfo.offsetY;
-    bricks[i][j] = { x, y, ...brickInfo };
+function initializeBricks() {
+  bricks = [];
+  for (let i = 0; i < brickRowCount; i++) {
+    bricks[i] = [];
+    for (let j = 0; j < brickColumnCount; j++) {
+      const x = i * (brickInfo.w + brickInfo.padding) + brickInfo.offsetX;
+      const y = j * (brickInfo.h + brickInfo.padding) + brickInfo.offsetY;
+      bricks[i][j] = { x, y, ...brickInfo };
+    }
   }
 }
 
@@ -185,13 +187,6 @@ function increaseScore() {
   }
 }
 
-// Make all bricks appear
-function showAllBricks() {
-  bricks.forEach(column => {
-    column.forEach(brick => (brick.visible = true));
-  });
-}
-
 // Draw everything
 function draw() {
   // clear canvas
@@ -253,6 +248,7 @@ function showEndGameModal(win) {
     gameEndMessage.textContent = "Game Over! Try again?";
     document.getElementById('loseSound').play();
   }
+  showDifficultySelection();
   gameEndModal.style.display = "block";
 }
 
@@ -261,6 +257,9 @@ function toggleGameStartRestart() {
   if (!isGameActive) {
     // If the game is not active, start the game
     isGameActive = true;
+
+    const selectedDifficulty = document.querySelector('input[name="difficulty"]:checked').value;
+    setDifficulty(selectedDifficulty);
 
     // Hide the start button if visible
     document.getElementById('startGameBtn').style.display = 'none';
@@ -275,7 +274,7 @@ function toggleGameStartRestart() {
 }
 
 function resetGame() {
-  // Reset game state (score, ball position, etc.)
+  // Reset game state (score, ball position, bricks)
   score = 0;
   ball.x = canvas.width / 2;
   ball.y = canvas.height / 2;
@@ -283,20 +282,46 @@ function resetGame() {
   ball.dy = -4;
   paddle.x = canvas.width / 2 - 40;
   paddle.y = canvas.height - 20;
-  bricks.forEach(column => {
-    column.forEach(brick => (brick.visible = true));
-  });
-
+  initializeBricks();
+  hideDifficultySelection();
   isGameActive = true;
   update(); // Start the game loop again
+}
+
+// Set the difficulty level
+function setDifficulty(difficulty) {
+  switch (difficulty) {
+    case 'easy':
+      brickColumnCount = 4;
+      break;
+    case 'medium':
+      brickColumnCount = 5;
+      break;
+    case 'hard':
+      brickColumnCount = 6;
+      break;
+    default:
+      brickColumnCount = 5; // Fallback to medium
+  }
+}
+
+function hideDifficultySelection() {
+  document.getElementById('difficulty').classList.add('hidden');
+}
+
+function showDifficultySelection() {
+  document.getElementById('difficulty').classList.remove('hidden');
 }
 
 // Keyboard event handlers
 document.addEventListener('keydown', keyDown);
 document.addEventListener('keyup', keyUp);
 
-// When starting the game
+// Start the game
 document.getElementById('startGameBtn').addEventListener('click', function() {
+  // Determine selected difficulty
+  const selectedDifficulty = document.querySelector('input[name="difficulty"]:checked').value;
+  setDifficulty(selectedDifficulty);
   this.style.display = 'none'; // Hide the start button
   resetGame();
 });
@@ -304,7 +329,9 @@ document.getElementById('startGameBtn').addEventListener('click', function() {
 // Restart the game 
 document.getElementById('playAgainBtn').addEventListener('click', function() {
   const gameEndModal = document.getElementById('gameEndModal');
-  gameEndModal.style.display = "none"; // Hide the modal
+  const selectedDifficulty = document.querySelector('input[name="difficulty"]:checked').value;
+  setDifficulty(selectedDifficulty);
+  gameEndModal.style.display = "none"; // Hide the play again button
   resetGame(); // Reset the game to its initial state
 });
 
