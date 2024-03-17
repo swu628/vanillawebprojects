@@ -45,6 +45,10 @@ canvas {
   background-color: #4fa1f3;
 }
 
+.difficulty {
+  margin-top: 20px; /* Adds space between show rules and difficulty selection */
+}
+
 .rules {
   position: absolute;
   top: 0;
