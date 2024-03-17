@@ -28,7 +28,8 @@ canvas {
   display: none;
 }
 
-.btn, .rules-btn, #playAgainBtn {
+/* style for all the buttons */
+.btn {
   background-color: #61dafb;
   color: #282c34;
   border: none;
@@ -37,11 +38,12 @@ canvas {
   font-size: 16px;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.5s ease;
   font-family: 'Press Start 2P', cursive; /* Apply the game font to buttons */
 }
 
-.btn:hover, .rules-btn:hover, #playAgainBtn:hover{
+/* hover effect for all the buttons */
+.btn:hover{
   background-color: #4fa1f3;
 }
 
@@ -68,6 +70,7 @@ canvas {
   transform: translateX(0); /* Bring into view */
 }
 
+/* The style for the box to be shown when the game ends */
 #gameEndModal {
   display: none;
   position: fixed;
@@ -75,16 +78,16 @@ canvas {
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #282c34; /* Dark background to match the body */
-  color: #ffffff; /* Light text color for readability */
+  color: #ffffff;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   z-index: 1050; /* Ensure it's above other content */
   width: 80%;
-  max-width: 400px; /* Adjust based on your preference */
+  max-width: 400px;
   text-align: center;
   border: 2px solid #61dafb; /* Blue border to match the button */
-  font-family: 'Press Start 2P', cursive; /* Using the "Press Start 2P" font */
+  font-family: 'Press Start 2P', cursive; /* Using the game font */
 }
 
 #gameEndModal p {
@@ -126,7 +129,7 @@ canvas {
   content: "";
   position: absolute;
   top: 50%;
-  left: -10px; /* Arrow points towards the trigger element */
+  left: -10px;
   margin-top: -5px;
   border-width: 5px;
   border-style: solid;
