@@ -258,6 +258,8 @@ function toggleGameStartRestart() {
     // If the game is not active, start the game
     isGameActive = true;
 
+    document.getElementById('canvas').style.display = 'block'; // Make the canvas visible
+
     const selectedDifficulty = document.querySelector('input[name="difficulty"]:checked').value;
     setDifficulty(selectedDifficulty);
 
@@ -274,7 +276,8 @@ function toggleGameStartRestart() {
 }
 
 function resetGame() {
-  // Reset game state (score, ball position, bricks)
+  // Show gaming cavas and reset game state (score, ball position and bricks)
+  document.getElementById('canvas').style.display = 'block'; 
   score = 0;
   ball.x = canvas.width / 2;
   ball.y = canvas.height / 2;
@@ -292,13 +295,13 @@ function resetGame() {
 function setDifficulty(difficulty) {
   switch (difficulty) {
     case 'easy':
-      brickColumnCount = 4;
+      brickColumnCount = 3;
       break;
     case 'medium':
       brickColumnCount = 5;
       break;
     case 'hard':
-      brickColumnCount = 6;
+      brickColumnCount = 7;
       break;
     default:
       brickColumnCount = 5; // Fallback to medium

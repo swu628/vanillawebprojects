@@ -24,11 +24,11 @@ canvas {
   border-radius: 10px;
 }
 
-.hidden {
+.hidden, #canvas {
   display: none;
 }
 
-.btn, .rules-btn, .startGameBtn {
+.btn, .rules-btn, #playAgainBtn {
   background-color: #61dafb;
   color: #282c34;
   border: none;
@@ -41,12 +41,13 @@ canvas {
   font-family: 'Press Start 2P', cursive; /* Apply the game font to buttons */
 }
 
-.btn:hover, .rules-btn:hover, .startGameBtn:hover {
+.btn:hover, .rules-btn:hover, #playAgainBtn:hover{
   background-color: #4fa1f3;
 }
 
 .difficulty-selection {
-  margin-top: 20px; /* Adds space between show rules and difficulty selection */
+  margin-top: 25px;
+  margin-bottom: 20px; /* Adds space between show rules and difficulty selection */
 }
 
 .rules {
@@ -89,22 +90,6 @@ canvas {
 #gameEndModal p {
   margin: 20px 0;
   font-size: 16px; /* Adjusted to match the button font size */
-}
-
-#playAgainBtn {
-  background-color: #61dafb; /* Consistent with .btn and .rules-btn */
-  color: #282c34; /* Dark text color for contrast */
-  font-size: 16px; /* Consistent font size with other buttons */
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  font-family: 'Press Start 2P', cursive; /* Apply the game font to buttons */
-}
-
-#playAgainBtn:hover {
-  background-color: #4fa1f3; /* Slightly darker blue on hover */
 }
 
 /* Tooltip container */
