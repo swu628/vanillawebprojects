@@ -45,7 +45,7 @@ canvas {
   background-color: #4fa1f3;
 }
 
-.difficulty {
+.difficulty-selection {
   margin-top: 20px; /* Adds space between show rules and difficulty selection */
 }
 
@@ -105,4 +105,52 @@ canvas {
 
 #playAgainBtn:hover {
   background-color: #4fa1f3; /* Slightly darker blue on hover */
+}
+
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  min-width: 250px; /* Minimum width */
+  max-width: 400px; /* Maximum width to prevent too wide tooltips */
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 10px 10px;
+
+  /* Position the tooltip text to the right */
+  position: absolute;
+  z-index: 1;
+  top: 50%; /* Align the tooltip vertically */
+  left: 105%;
+  transform: translateY(-50%); /* Center the tooltip vertically relative to the trigger element */
+
+  /* Fade in tooltip */
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+/* Tooltip arrow (pointing to the left) */
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -10px; /* Arrow points towards the trigger element */
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent black transparent transparent; /* Arrow pointing left */
+  transform: translateY(-50%);
+}
+
+/* Show the tooltip text when hovering */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
 }

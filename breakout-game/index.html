@@ -21,10 +21,17 @@
   </head>
   <body>
     <h1>Breakout!</h1>
-    <button id="startGameBtn" class="btn startGame-btn">Start the Game</button>
-    <button id="rules-btn" class="btn rules-btn">Show Rules</button>
-  
-    <div id="difficulty" class="difficulty">
+
+    <button id="startGameBtn" class="tooltip btn startGame-btn">Start Game
+      <span class="tooltiptext">Cick the button or press the "enter" key to start the game</span>
+    </button>
+
+    <button id="rules-btn" class="tooltip btn rules-btn">Show Rules
+      <span class="tooltiptext">Click to see the rules</span>
+    </button>
+
+    <div id="difficulty" class="tooltip difficulty-selection">
+      <span class="tooltiptext">Click to choose a difficulty level</span>
       <label><input type="radio" name="difficulty" value="easy"> Easy</label>
       <label><input type="radio" name="difficulty" value="medium" checked> Medium</label>
       <label><input type="radio" name="difficulty" value="hard"> Hard</label>
@@ -42,7 +49,9 @@
 
     <div id="gameEndModal">
       <p id="gameEndMessage"></p>
-      <button id="playAgainBtn">Play Again</button>
+      <button id="playAgainBtn" class="tooltip">Play Again
+        <span class="tooltiptext">Cick the button or press the "enter" key to restart the game</span>
+      </button>
     </div>
 
     <canvas id="canvas" width="800" height="600"></canvas>
