@@ -305,12 +305,18 @@ function setDifficulty(difficulty) {
   }
 }
 
+// This function hides the selector
 function hideDifficultySelection() {
-  document.getElementById('difficulty').classList.add('hidden');
+  const difficultySelector = document.getElementById('difficulty');
+  difficultySelector.classList.add('hidden'); 
+  difficultySelector.classList.remove('tooltip'); 
 }
 
+// This function make the selector visible
 function showDifficultySelection() {
-  document.getElementById('difficulty').classList.remove('hidden');
+  const difficultySelector = document.getElementById('difficulty');
+  difficultySelector.classList.remove('hidden');
+  difficultySelector.classList.add('tooltip');
 }
 
 // Keyboard event handlers
