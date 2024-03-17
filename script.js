@@ -6,9 +6,9 @@ const ctx = canvas.getContext('2d');
 
 let score = 0;
 let isGameActive = false; // Stop the game from auto playing
-let brickColumnCount;
+let brickRowCount;
 
-const brickRowCount = 9;
+const brickColumnCount = 9;
 const delay = 500; //delay to reset the game
 
 // Create ball props
@@ -46,9 +46,9 @@ const brickInfo = {
 // Create bricks
 function initializeBricks() {
   bricks = [];
-  for (let i = 0; i < brickRowCount; i++) {
+  for (let i = 0; i < brickColumnCount; i++) {
     bricks[i] = [];
-    for (let j = 0; j < brickColumnCount; j++) {
+    for (let j = 0; j < brickRowCount; j++) {
       const x = i * (brickInfo.w + brickInfo.padding) + brickInfo.offsetX;
       const y = j * (brickInfo.h + brickInfo.padding) + brickInfo.offsetY;
       bricks[i][j] = { x, y, ...brickInfo };
@@ -181,7 +181,7 @@ function playBrickHitSound() {
 function increaseScore() {
   score++;
 
-  if (score % (brickRowCount * brickColumnCount) === 0) {
+  if (score % (brickColumnCount * brickRowCount) === 0) {
     isGameActive = false; // Stop the game loop
     showEndGameModal(true); // Show win message
   }
@@ -295,16 +295,16 @@ function resetGame() {
 function setDifficulty(difficulty) {
   switch (difficulty) {
     case 'easy':
-      brickColumnCount = 3;
+      brickRowCount = 3;
       break;
     case 'medium':
-      brickColumnCount = 5;
+      brickRowCount = 5;
       break;
     case 'hard':
-      brickColumnCount = 7;
+      brickRowCount = 7;
       break;
     default:
-      brickColumnCount = 5; // Fallback to medium
+      brickRowCount = 5; // Fallback to medium
   }
 }
 
