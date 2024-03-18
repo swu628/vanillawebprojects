@@ -3,7 +3,7 @@
 
 ## Introduction
 
-I have chosen to fork bradtraversy's 'vanillawebprojects' repository on GitHub, a compilation showcasing a variety of mini-projects written in JavaScript, HTML, and CSS. Within this assortment of 20 mini-projects, my attention was drawn to the breakout game. A game where the players can control a paddle using arrow keys to launch a ball upwards, aiming to break the bricks. Initially, upon visiting the website, the game commences automatically, and should the ball touch the ground, it restarts without user intervention. After evaluating its original features, I pinpointed and executed several targeted, minor yet impactful enhancements.
+I have chosen to fork bradtraversy's 'vanillawebprojects' repository on GitHub, it is a compilation showcasing a variety of mini-projects written in JavaScript, HTML, and CSS. Within this assortment of 20 mini-projects, my attention was drawn to the breakout game. A game where the players can control a paddle using arrow keys to launch a ball upwards, aiming to break the bricks. Initially, upon visiting the website, the game commences automatically, and should the ball touch the ground, it restarts without user intervention. After evaluating its original features, I pinpointed and executed several targeted, minor yet impactful enhancements.
 
 
 ## Documentations for users and future developers
@@ -81,3 +81,28 @@ Tooltips enhance user experience by offering contextual information, making web 
 | 03/17 | Fixed visibility of selector during the game | 30mins | Adjusted game logic to hide the difficulty selector during gameplay, this is aim to remove unnecessary distractions. | 
 | 03/17 | Enhancing game canvas appearance | 10mins | Made the game canvas initially invisible to improve the initial user interface. | 
 | 03/17-18 | Writing README.md file | 3hrs | Created user and developer documentations. Documented the time Sheet. Wrote the critical assessment of breakout game project. | 
+
+
+## Critical assessment
+
+<strong>Strengths and Weaknesses</strong>
+
+The repository,'vanillawebprojects' is a good repository to look at for developers who need to practice or showcase their vanilla web development skills. I discovered that this simplicity is the greatest of its strengths, which, in turn, allows for easy understanding and modification, which, in essence, has an educational value.
+
+But on the negative side, though the breakout game turned out to be simple the lack of interactive components resulted in gameplay that was not so engaging. For instance, the automatic start and restart mechanism; It has considerably simplified the game but it also takes away some control from the player. Moreover, I came across the fact that the game UI was quite primitive, and they barely had any fancy features that might have drawn people's attention.
+
+<strong>Challenges and enhancements</strong>
+
+The most challenging task of the project was to expand and improve the gameplay without changing the core game mechanics. I faced a lot of problems which included a new feature not starting the game, or the whole gaming canvas disappearing. This implied devoting time to the problem of identifying and rectifying these problems. For example, while I was integrating the difficulty selector, I came across the bug where the restart button disappears, and the game cannot be played.
+
+Other aspect which faces chanllenge is to improved is the layout of the UX so that it becomes more visually appealing and attractive. It is important to find a way to strike the balance between aesthetic appeal and usability, and at the same time, ensure that the new design did not hinder the game's overall performance or accessibility. I started with a pencil sketch. Then, I gradually moved on to deciding on the color schemes, fonts, and animations. 
+
+The sound design was also challenging, as indicated in the timesheet, because it required creating sound effects that blended seamlessly with the game's settings. Firstly, I was determined to obtain these sounds from Artlist, a platform known for offering free sound effects. However, I soon discovered a limitation for non-subscribers: the website disallows downloading more than three sound effects and the non-subscribers are limited to access to a very small selection of the sound effects. Thus, the issue at hand called for the exploration of other platforms for the sound effects, and consequently, the time spent on the project was significantly prolonged. Luckily, Pixabay, which provides the demanded sound effects and no limitations like Artlist.
+
+<strong>Lessons Learned</strong>
+
+Firstly, I have discovered that users' feedback is a major component of the development life cycle. User feedback was irreplaceable, as it helped in the identification and rework of the areas that needed an upgrade. Besides, it aided in the validation of the new features. The feedback loop not only enabled the refinement of the project but also the assurance that the result shared the emotions of its target audience.
+
+Also, by completing the assignment, I  have learnt the importance and why detailed documentation is needed. In the user documentation, the inclusion of how to run the project makes it easy for the users to utilize the application without delving into the underlying code base. Documentation for developers and contributors is instrumental in clarifying the process and also as a guide to others who will be contributing to the project. 
+
+Also, keeping a timesheet has proved to be a meaningful practice. Besides making it possible for me to keep track of my progress, it also provided me with information on the aspects that needed the most attention. Regularly reviewing my work has been a turning point for me to understand my strengths and weaknesses, thus making decisions on how to advance my skills and become more efficient.
